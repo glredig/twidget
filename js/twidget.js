@@ -1,5 +1,9 @@
 var Twidget = (function() {
-	var container;
+	var container,
+		header,
+		results,
+		btn,
+		stream_tiles = [];
 
 	function init(config) {
 		container = config.element;
@@ -7,9 +11,9 @@ var Twidget = (function() {
 	}
 
 	function buildHTML() {
-		var header = document.createElement('div');
-		var results = document.createElement('div');
-		var btn = document.createElement('a');
+		header = document.createElement('div');
+		results = document.createElement('div');
+		btn = document.createElement('a');
 
 		container.classList.add('twidget_container');
 		header.classList.add('twidget_header');
@@ -35,7 +39,7 @@ var Twidget = (function() {
 			console.log('data', data);
 		}
 
-		var url = 'https://api.twitch.tv/kraken/search/streams?q=' + keyword + '&callback=display';
+		var url = 'https://api.twitch.tv/kraken/search/streams?q=' + keyword + '&callback=Twidget.display';
 
 		var tag = document.createElement('script');
 		tag.src = url;
@@ -43,8 +47,23 @@ var Twidget = (function() {
 		document.body.appendChild(tag);
 	}
 
+	function display(data) {
+		for (var i = 0; i < data.streams.length; i++) {
+			var stream_tile = new StreamTile({
+				display_name: data.streams[i].channel.display_name
+			});
+
+			console.log(data.streams[i]);
+			stream_tile.build();
+			stream_tiles.push(stream_tile);
+
+			results.appendChild(stream_tile.element);
+		}
+	}
+
 	return {
-		init: init
+		init: init,
+		display: display
 	}
 })();
 
