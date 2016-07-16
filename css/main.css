@@ -21,3 +21,48 @@ body {
 	padding: 1em;
 	min-height: 300px;
 }
+
+.twidget_pagination {
+	height: 35px;
+}
+
+.twidget_pagination div:first-child {
+	width: 50%;
+	float: left;
+}
+
+.twidget_pagination div:last-child {
+	float: right;
+	width: 30%;
+}
+
+.twidget_pagination div:last-child div {
+	width: 30%;
+	height: 35px;
+	float: right;
+	text-align: center;
+}
+
+.twidget_pagination div:last-child div:first-child {
+	width: 25%;
+	height: 35px;
+	float: right;
+	text-align: right;
+	cursor: pointer;
+}
+
+.twidget_pagination div:last-child div:last-child {
+	width: 25%;
+	text-align: left;
+	cursor: pointer;
+}
+
+.twidget_results img {
+	float: left;
+	margin-right: 1em;
+	max-width: 100px;
+}
+
+.twidget_results h3 {
+	margin-bottom: .5em;
+}
