@@ -11,6 +11,10 @@ var Twidget = (function() {
 
 	function init(config) {
 		container = config.element;
+		spinner = new Spinner({
+			with_overlay: true
+		});
+
 		buildHTML();
 	}
 
@@ -27,7 +31,6 @@ var Twidget = (function() {
 		page_count = document.createElement('div');
 		right_arr = document.createElement('div');
 		right_arr.innerText = '>';
-		spinner = buildSpinner();
 
 		container.classList.add('twidget_container');
 		header.classList.add('twidget_header');
@@ -52,39 +55,16 @@ var Twidget = (function() {
 		pagination.appendChild(page_nav);
 
 		results.appendChild(pagination);
-		results.appendChild(spinner);
+
+		if (spinner) {
+			results.appendChild(spinner.init());			
+		}
 
 		container.appendChild(header);
 		container.appendChild(results);
 
 		setupListeners();
 		field.focus();
-	}
-
-	function buildSpinner() {
-		var spinner = document.createElement('div'),
-			bounce1 = document.createElement('div'),
-			bounce2 = document.createElement('div'),
-			bounce3 = document.createElement('div');
-
-		spinner.classList.add('twidget_spinner');
-		bounce1.classList.add('bounce1');
-		bounce2.classList.add('bounce2');
-		bounce3.classList.add('bounce3');
-
-		spinner.appendChild(bounce1);
-		spinner.appendChild(bounce2);
-		spinner.appendChild(bounce3);
-
-		return spinner;
-	}
-
-	function showSpinner() {
-		spinner.style.display = 'block';
-	}
-
-	function hideSpinner() {
-		spinner.style.display = 'none';
 	}
 
 	function setupListeners() {
@@ -128,7 +108,7 @@ var Twidget = (function() {
 	function search(keyword) {		
 		var url = 'https://api.twitch.tv/kraken/search/streams?limit=5&offset=' + offset + '&q=' + keyword + '&callback=Twidget.display';
 		
-		showSpinner();
+		spinner.show();
 
 		if (tag !== undefined) {
 			document.body.removeChild(tag);
@@ -162,7 +142,7 @@ var Twidget = (function() {
 			results.appendChild(stream_tile.element);
 		}
 
-		hideSpinner();
+		spinner.hide();
 	}
 
 	function clearResults() {

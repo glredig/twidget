@@ -1,13 +1,24 @@
+.twidget_spinner_overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, .9);
+  display: none;
+  z-index: 1;
+}
+
 .twidget_spinner {
   position: absolute;
-  top: 50%;
+  top: 8em;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   width: 70px;
   height: 70px;
   text-align: center;
   display: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 .twidget_spinner > div {
