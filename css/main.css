@@ -17,9 +17,14 @@ body {
 	background-color: #eeeeee;
 }
 
+.twidget_button {
+	cursor: pointer;
+}
+
 .twidget_results {
 	padding: 1em;
 	min-height: 300px;
+	position: relative;
 }
 
 .twidget_pagination {
