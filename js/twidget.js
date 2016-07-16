@@ -36,6 +36,7 @@ var Twidget = (function() {
 		pagination.style.visibility = 'hidden';
 
 		field.type = 'text';
+		field.placeholder = 'Search query...';
 
 		btn.classList.add('twidget_button');
 		btn.innerText = 'Search';
@@ -57,6 +58,7 @@ var Twidget = (function() {
 		container.appendChild(results);
 
 		setupListeners();
+		field.focus();
 	}
 
 	function buildSpinner() {

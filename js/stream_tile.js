@@ -16,7 +16,7 @@ var StreamTile = (function() {
 		this.thumb.src = this.thumb_url;
 		this.info_container = document.createElement('div');
 
-		this.header = document.createElement('h3');
+		this.header = document.createElement('h2');
 		this.header.innerText = this.display_name;
 		this.stream_info = document.createElement('p');
 		this.stream_info.innerText = this.game + ' - ' + this.viewers + ' viewers';
