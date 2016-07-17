@@ -7,7 +7,8 @@ var Twidget = (function() {
 		stream_tiles = [],
 		offset = 0,
 		tag,
-		result_total = 0;
+		result_total = 0,
+		user_message;
 
 	function init(config) {
 		container = config.element;
@@ -31,12 +32,15 @@ var Twidget = (function() {
 		page_count = document.createElement('div');
 		right_arr = document.createElement('div');
 		right_arr.innerText = '>';
+		user_message = document.createElement('div');
 
 		container.classList.add('twidget_container');
 		header.classList.add('twidget_header');
 		results.classList.add('twidget_results');
 		pagination.classList.add('twidget_pagination');
 		pagination.style.visibility = 'hidden';
+		user_message.classList.add('twidget_user_message');
+		user_message.innerText = 'Enter search term';
 
 		field.type = 'text';
 		field.placeholder = 'Search query...';
@@ -55,6 +59,7 @@ var Twidget = (function() {
 		pagination.appendChild(page_nav);
 
 		results.appendChild(pagination);
+		results.appendChild(user_message);
 
 		if (spinner) {
 			results.appendChild(spinner.init());			
@@ -108,6 +113,7 @@ var Twidget = (function() {
 	function search(keyword) {		
 		var url = 'https://api.twitch.tv/kraken/search/streams?limit=5&offset=' + offset + '&q=' + keyword + '&callback=Twidget.display';
 		
+		user_message.style.display = 'none';
 		spinner.show();
 
 		if (tag !== undefined) {
@@ -123,23 +129,30 @@ var Twidget = (function() {
 	function display(data) {
 		result_total = data._total;
 		clearResults();
-		result_count.innerText = 'Total results: ' + result_total;
-		page_count.innerText = (offset / 5 + 1) + '/' + Math.ceil(result_total / 5);
-		pagination.style.visibility = 'visible';
 
-		for (var i = 0; i < data.streams.length; i++) {
-			var stream_tile = new StreamTile({
-				display_name: data.streams[i].channel.display_name,
-				game: data.streams[i].game,
-				viewers: data.streams[i].viewers,
-				thumb_url: data.streams[i].preview.medium
-			});
+		if (result_total === 0) {
+			user_message.innerText = 'No results found';
+			user_message.style.display = 'block';
+			pagination.style.visibility = 'hidden';
+		}
+		else {
+			result_count.innerText = 'Total results: ' + result_total;
+			page_count.innerText = (offset / 5 + 1) + '/' + Math.ceil(result_total / 5);
+			pagination.style.visibility = 'visible';
 
-			console.log(data.streams[i]);
-			stream_tile.build();
-			stream_tiles.push(stream_tile);
+			for (var i = 0; i < data.streams.length; i++) {
+				var stream_tile = new StreamTile({
+					display_name: data.streams[i].channel.display_name,
+					game: data.streams[i].game,
+					viewers: data.streams[i].viewers,
+					thumb_url: data.streams[i].preview.medium
+				});
 
-			results.appendChild(stream_tile.element);
+				stream_tile.build();
+				stream_tiles.push(stream_tile);
+
+				results.appendChild(stream_tile.element);
+			}	
 		}
 
 		spinner.hide();

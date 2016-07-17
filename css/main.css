@@ -88,6 +88,16 @@ body {
 	cursor: pointer;
 }
 
+.twidget_results .twidget_user_message {
+	position: absolute;
+	top: 4em;
+	left: 50%;
+	transform: translate(-50%);
+	font-weight: bold;
+	font-size: 2em;
+	color: #dddddd;
+}
+
 .twidget_results .stream_tile {
 	padding-top: 1.5em;
 	border-top: 2px solid #f0f0f0;
