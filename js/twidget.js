@@ -74,12 +74,14 @@ var Twidget = (function() {
 
 	function setupListeners() {
 		btn.addEventListener('click', function() {
-			offset = 0;
-			search(encodeURI(field.value));
+			if (field.value.trim() !== '') {				
+				offset = 0;
+				search(encodeURI(field.value));
+			}
 		});
 
 		field.addEventListener('keyup', function(e) {
-			if (e.keyCode === 13) {
+			if (e.keyCode === 13 && field.value.trim() !== '') {
 				offset = 0;
 				search(encodeURI(field.value));
 			}
@@ -110,7 +112,13 @@ var Twidget = (function() {
 		}
 	}
 
-	function search(keyword) {		
+	function search(keyword) {	
+		console.log('kw', keyword.trim());
+		if (keyword.trim() === '') {
+			user_message.innerText = 'Enter search term';
+			return false;
+		}
+
 		var url = 'https://api.twitch.tv/kraken/search/streams?limit=5&offset=' + offset + '&q=' + keyword + '&callback=Twidget.display';
 		
 		user_message.style.display = 'none';
