@@ -1,0 +1,22 @@
+@media screen and (max-width: 480px) {
+	.twidget_header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 5;
+		padding-top: 1.5em;
+	}
+
+	.twidget_header:after {
+		content: '';
+	}
+
+	.twidget_header input {
+		width: 75%;
+	}	
+
+	.twidget_results {
+		margin-top: 3.2em;
+	}
+}

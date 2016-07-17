@@ -138,7 +138,7 @@ var Twidget = (function() {
 		result_total = data._total;
 		clearResults();
 
-		if (result_total === 0) {
+		if (result_total === 0 || data.streams.length === 0) {
 			user_message.innerText = 'No results found';
 			user_message.style.display = 'block';
 			pagination.style.visibility = 'hidden';

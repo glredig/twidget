@@ -3,6 +3,13 @@ body {
 	margin: 0;
 	font-size: 14px;
 	font-family: 'Open Sans', arial, sans-serif;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#283144+28,606c88+100,606c88+101 */
+    background: #283144; /* Old browsers */
+    background: -moz-linear-gradient(top,  #283144 28%, #606c88 100%, #606c88 101%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #283144 28%,#606c88 100%,#606c88 101%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #283144 28%,#606c88 100%,#606c88 101%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#283144', endColorstr='#606c88',GradientType=0 ); /* IE6-9 */
 }
 
 .twidget_container {
@@ -17,8 +24,21 @@ body {
 .twidget_header {
 	border-bottom: 1px solid #999999;
 	padding: 1em;
-	background-color: #eeeeee;
-	height: 75px;
+	padding-top: 3em;
+	background-color: #dddddd;
+	height: 3em;
+	position: relative;
+}
+
+.twidget_header:after {
+	content: 'Twidget';
+	font-family: 'Lobster Two', arial, sans-serif;
+	font-style: italic;
+	position: absolute;
+	right: 1em;
+	top: .5em;
+	font-size: 2em;
+	color: #4c6583;
 }
 
 .twidget_header input {
@@ -51,6 +71,7 @@ body {
 	padding: 1em;
 	min-height: 300px;
 	position: relative;
+	background-color: #f0f0f0;
 }
 
 .twidget_pagination {
@@ -100,7 +121,7 @@ body {
 
 .twidget_results .stream_tile {
 	padding-top: 1.5em;
-	border-top: 2px solid #f0f0f0;
+	border-top: 2px solid #e9e9e9;
 }
 
 .twidget_results img {
