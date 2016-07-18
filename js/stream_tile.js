@@ -4,22 +4,24 @@ var StreamTile = (function() {
 		this.game = config.game;
 		this.viewers = config.viewers;
 		this.thumb_url = config.thumb_url;
+		this.url = config.url;
 	};
 
 	StreamTile.prototype.build = function() {
 		this.element = document.createElement('div');
 		this.element.classList.add('stream_tile');
-
-		this.element.style.height = '100px';
 		
-		this.thumb = document.createElement('img');
-		this.thumb.src = this.thumb_url;
+		this.thumb = document.createElement('div');
+		this.thumb.classList.add('twidget_thumb');
+		this.thumb.style.backgroundImage = 'url("' + this.thumb_url + '")';
 		this.info_container = document.createElement('div');
 
-		this.header = document.createElement('h2');
+		this.header = document.createElement('a');
+		this.header.href = this.url;
 		this.header.innerText = this.display_name;
+		this.header.target = '_blank';
 		this.stream_info = document.createElement('p');
-		this.stream_info.innerText = this.game + ' - ' + this.viewers + ' viewers';
+		this.stream_info.innerText = this.game + ' - ' + this.viewers + (this.viewers === 1 ? ' viewer' : ' viewers');
 		this.info_container.appendChild(this.header);
 		this.info_container.appendChild(this.stream_info);
 

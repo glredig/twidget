@@ -28,10 +28,8 @@ var Twidget = (function() {
 		result_count = document.createElement('div');
 		page_nav = document.createElement('div');
 		left_arr = document.createElement('div');
-		left_arr.innerText = '<';
 		page_count = document.createElement('div');
 		right_arr = document.createElement('div');
-		right_arr.innerText = '>';
 		user_message = document.createElement('div');
 
 		container.classList.add('twidget_container');
@@ -153,8 +151,11 @@ var Twidget = (function() {
 					display_name: data.streams[i].channel.display_name,
 					game: data.streams[i].game,
 					viewers: data.streams[i].viewers,
-					thumb_url: data.streams[i].preview.medium
+					thumb_url: data.streams[i].preview.medium,
+					url: data.streams[i].channel.url
 				});
+
+				console.log("info", data.streams[i]);
 
 				stream_tile.build();
 				stream_tiles.push(stream_tile);

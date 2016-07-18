@@ -12,6 +12,16 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#283144', endColorstr='#606c88',GradientType=0 ); /* IE6-9 */
 }
 
+a {
+	color: #4c6583;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #667F9D;
+}
+
 .twidget_container {
 	max-width: 600px;
 	min-width: 300px;
@@ -48,7 +58,7 @@ body {
 	border-right: none;
 	border-bottom-color: #ffffff;*/
 	box-shadow: inset 0 0 -1px 3px #999999;
-	width: 40%;
+	width: 55%;
 	margin-right: 0;
 }
 
@@ -65,6 +75,11 @@ body {
 	border: none;	
 	background-color: #4c6583;
 	color: #ffffff;
+	transition: background-color .5s ease;
+}
+
+.twidget_button:hover {
+	background-color: #667F9D;
 }
 
 .twidget_results {
@@ -90,23 +105,59 @@ body {
 
 .twidget_pagination div:last-child div {
 	width: 30%;
-	height: 35px;
+	height: 14px;
+	line-height: 14px;
 	float: right;
 	text-align: center;
 }
 
 .twidget_pagination div:last-child div:first-child {
-	width: 15%;
-	height: 35px;
+	width: 14px;
+	height: 14px;
 	float: right;
 	text-align: left;
 	cursor: pointer;
+	position: relative;
+}
+
+.twidget_pagination div:last-child div:first-child:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 7px 0 7px 14px;
+	border-color: transparent transparent transparent #4c6583;
+}
+
+.twidget_pagination div:last-child div:first-child:hover:after {
+	border-color: transparent transparent transparent #667F9D;
 }
 
 .twidget_pagination div:last-child div:last-child {
-	width: 15%;
+	width: 14px;
+	height: 14px;
 	text-align: right;
 	cursor: pointer;
+	position: relative;
+}
+
+.twidget_pagination div:last-child div:last-child:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 7px 14px 7px 0;
+	border-color: transparent #4c6583 transparent transparent;
+}
+
+.twidget_pagination div:last-child div:last-child:hover:after {
+	border-color: transparent #667F9D transparent transparent;
 }
 
 .twidget_results .twidget_user_message {
@@ -122,17 +173,21 @@ body {
 .twidget_results .stream_tile {
 	padding-top: 1.5em;
 	border-top: 2px solid #e9e9e9;
+	height: 120px;
 }
 
-.twidget_results img {
+.twidget_results .twidget_thumb {
 	float: left;
 	margin-right: 1em;
-	max-width: 100px;
-	padding-bottom: 1.5em;
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	border: 1px solid #555555;
 }
 
-.twidget_results h2 {
+.twidget_results a {
 	margin-bottom: .5em;
 	margin-top: 0;
 	line-height: .8em;
+	font-size: 1.7em;
 }
