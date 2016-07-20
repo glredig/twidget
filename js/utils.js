@@ -14,7 +14,7 @@ var Utils = (function() {
 		var minute_str = minutes + ' minute' + (minutes == 1 ? ', ' : 's, ');
 		var second_str = seconds + ' second' + (seconds == 1 ? ', ' : 's');
 
-		duration = (days > 0 ? day_str : '') + (hours > 0 ? hours_str : '') + (minutes > 0 ? minute_str : '') + (seconds > 0 ? second_str : '');
+		duration = (days > 0 ? day_str : '') + (hours > 0 ? hour_str : '') + (minutes > 0 ? minute_str : '') + (seconds > 0 ? second_str : '');
 		
 		return duration;
 	}
