@@ -152,7 +152,10 @@ var Twidget = (function() {
 					game: data.streams[i].game,
 					viewers: data.streams[i].viewers,
 					thumb_url: data.streams[i].preview.medium,
-					url: data.streams[i].channel.url
+					url: data.streams[i].channel.url,
+					created_at: data.streams[i].created_at,
+				  views: data.streams[i].channel.views,
+				  mature: data.streams[i].channel.mature
 				});
 
 				console.log("info", data.streams[i]);

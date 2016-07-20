@@ -5,9 +5,13 @@ var StreamTile = (function() {
 		this.viewers = config.viewers;
 		this.thumb_url = config.thumb_url;
 		this.url = config.url;
+		this.created_at = config.created_at;
+		this.views = config.views;
+		this.mature = config.mature;
 	};
 
 	StreamTile.prototype.build = function() {
+		var duration = Utils.getTimeDistance((new Date()).getTime(), Date.parse(this.created_at));
 		this.element = document.createElement('div');
 		this.element.classList.add('stream_tile');
 		
@@ -20,8 +24,13 @@ var StreamTile = (function() {
 		this.header.href = this.url;
 		this.header.innerText = this.display_name;
 		this.header.target = '_blank';
+		if (this.mature) {
+			this.header.classList.add('mature');
+		}
 		this.stream_info = document.createElement('p');
-		this.stream_info.innerText = this.game + ' - ' + this.viewers + (this.viewers === 1 ? ' viewer' : ' viewers');
+		this.stream_info.innerHTML = (this.game ? '<span>' + this.game + '</span> - ' : '') + this.viewers + (this.viewers === 1 ? ' viewer' : ' viewers');
+		this.stream_info.innerHTML += '<br> Online for ' + duration;
+		this.stream_info.innerHTML += '<br> Total views: ' + this.views;
 		this.info_container.appendChild(this.header);
 		this.info_container.appendChild(this.stream_info);
 

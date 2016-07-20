@@ -89,6 +89,10 @@ a:hover {
 	background-color: #f0f0f0;
 }
 
+.twidget_results p {
+	font-weight: 300;
+}
+
 .twidget_pagination {
 	height: 35px;
 }
@@ -185,9 +189,28 @@ a:hover {
 	border: 1px solid #555555;
 }
 
+.twidget_results .stream_tile p span {
+	font-weight: bold;
+	color: #555555;
+}
+
 .twidget_results a {
 	margin-bottom: .5em;
 	margin-top: 0;
 	line-height: .8em;
 	font-size: 1.7em;
+	display: inline-block;
+	position: relative;
+}
+
+.twidget_results a.mature:after {
+	content: 'mature';
+	color: #000000;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	right: -55px;
+	font-size: .65em;
+	font-variant: small-caps;
+	line-height: .65em;
 }
