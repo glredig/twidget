@@ -8,6 +8,7 @@ var StreamTile = (function() {
 		this.created_at = config.created_at;
 		this.views = config.views;
 		this.mature = config.mature;
+		this.status = config.status;
 	};
 
 	StreamTile.prototype.build = function() {
@@ -28,9 +29,12 @@ var StreamTile = (function() {
 			this.header.classList.add('mature');
 		}
 		this.stream_info = document.createElement('p');
+		if (Utils.formatString(this.status, 50, true)) {
+			this.thumb.title = Utils.formatString(this.status, 50, true);
+		}
 		this.stream_info.innerHTML = (this.game ? '<span>' + this.game + '</span> - ' : '') + this.viewers + (this.viewers === 1 ? ' viewer' : ' viewers');
-		this.stream_info.innerHTML += '<br> Online for ' + duration;
 		this.stream_info.innerHTML += '<br> Total views: ' + this.views;
+		this.stream_info.innerHTML += '<br> Streaming for ' + duration;
 		this.info_container.appendChild(this.header);
 		this.info_container.appendChild(this.stream_info);
 

@@ -111,7 +111,6 @@ var Twidget = (function() {
 	}
 
 	function search(keyword) {	
-		console.log('kw', keyword.trim());
 		if (keyword.trim() === '') {
 			user_message.innerText = 'Enter search term';
 			return false;
@@ -145,6 +144,7 @@ var Twidget = (function() {
 			result_count.innerText = 'Total results: ' + result_total;
 			page_count.innerText = (offset / 5 + 1) + '/' + Math.ceil(result_total / 5);
 			pagination.style.visibility = 'visible';
+			setPaginationNav((offset / 5 + 1), Math.ceil(result_total / 5));
 
 			for (var i = 0; i < data.streams.length; i++) {
 				var stream_tile = new StreamTile({
@@ -155,10 +155,9 @@ var Twidget = (function() {
 					url: data.streams[i].channel.url,
 					created_at: data.streams[i].created_at,
 				  views: data.streams[i].channel.views,
-				  mature: data.streams[i].channel.mature
+				  mature: data.streams[i].channel.mature,
+				  status: data.streams[i].channel.status
 				});
-
-				console.log("info", data.streams[i]);
 
 				stream_tile.build();
 				stream_tiles.push(stream_tile);
@@ -176,6 +175,25 @@ var Twidget = (function() {
 		}
 
 		stream_tiles = [];
+	}
+
+	function setPaginationNav(current, total) {
+		if (current === 1 && total === 1) {
+			right_arr.style.visibility = 'hidden';
+			left_arr.style.visibility = 'hidden';
+		}
+		else if (current === total) {
+			right_arr.style.visibility = 'hidden';
+			left_arr.style.visibility = 'visible';
+		}
+		else if (current === 1) {
+			right_arr.style.visibility = 'visible';
+			left_arr.style.visibility = 'hidden';
+		}
+		else {
+			right_arr.style.visibility = 'visible';
+			left_arr.style.visibility = 'visible';
+		}
 	}
 
 	return {

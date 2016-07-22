@@ -19,7 +19,24 @@ var Utils = (function() {
 		return duration;
 	}
 
+	function formatString(str, length, ellipses) {
+		var formatted = '',
+			length = length || 50,
+			ellipses = ellipses || true;
+
+		if (/(%3C*|<)[^*]?script/.test(this.status)) {
+			return false;
+		}
+		else {
+			formatted = str.substring(0, length);
+			formatted = ((ellipses && str.length > length) ? formatted + '...' : formatted);
+		
+			return formatted;
+		}	
+	}
+
 	return {
-		getTimeDistance: getTimeDistance
+		getTimeDistance: getTimeDistance,
+		formatString: formatString
 	}
 })();
